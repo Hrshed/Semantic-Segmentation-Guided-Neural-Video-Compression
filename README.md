@@ -1,5 +1,7 @@
 # Semantic Segmentation Guided Neural Video Compression 
 
+https://github.com/user-attachments/assets/8c6f7c55-0cbe-4799-9fb3-d7b2b816d70d
+
 This repository contains the code for the **“Semantic Segmentation Guided Neural Video Compression”**.
 
 The project extends a neural video compression baseline with semantic conditioning and a “Performance” architecture optimized for foreground regions. The final model improves **ROI PSNR by ~1–1.5 dB over the baseline at similar BPP**, with approximately **14% runtime overhead** (see accompanying report for details).
