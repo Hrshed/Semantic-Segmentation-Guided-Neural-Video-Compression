@@ -1,0 +1,79 @@
+epochs: 25
+dtype: float32
+accumulation_steps: 8
+grad_clip: 5.0
+log_interval: 1
+log_every_n_steps: 1
+val_check_interval: 50
+save_top_k: 3
+out_dir: out
+dmc_variant: performance  # or: old / fast / mask_prop
+image_checkpoint_path: '/workspace/checkpoints/cvpr2025_image.pth.tar'
+video_checkpoint_path: '/workspace/checkpoints/cvpr2025_video.pth.tar' 
+log_dir: ./logs
+seed: 42
+precision: 16-mixed #32-true 
+num_gpus: 1
+resume_from_checkpoint: null
+dataset:
+  dataset_type: waymo
+  data_dir: /workspace/data
+  batch_size: 32
+  num_workers: 4
+  n_frames: 4
+  seq_len: 4
+  slide: 1
+  crop:
+  - 128
+  - 128
+  crop_size: 128
+  yuv_format: '444'
+  train_val_test_split:
+  - 0.9
+  - 0.1
+  - 0.0
+  generate_split: false
+  train_split: 0.9
+  build_cache: true
+  use_cache: true
+  video_dir: ''
+  train_data_path: null
+  val_data_path: null
+optimizer:
+  optimizer_type: adamw
+  base_lr: 0.0001
+  min_lr: 1.0e-05
+  aux_lr: 0.0005
+  weight_decay: 0.01
+  warmup_iters: 0
+compression:
+  lambda_min: 50.0
+  lambda_max: 38400.0
+  q_levels: 64
+  index_map:
+  - 0
+  - 1
+  - 0
+  - 2
+  - 0
+  - 2
+  - 0
+  - 2
+  weights_map:
+    0: 0.5
+    1: 1.2
+    2: 0.9
+# WMSE constraint
+
+#wmse_target:  5e-3  # τ (tune)
+# Dual ascent hyperparams
+#lagr_lr: 5e-3
+#lagr_momentum: 0.99
+#lagr_lambda_max: 1e3
+#lagr_init_lambda: 1e3
+lagr_rho: 5.0
+lagr_ema_alpha: 0.05
+lagr_init_lambda: 1.0 
+lagr_lambda_max: 1e3
+alm_penalty_scale: 0.3
+psnrm_target_path: 'psnrm_csv/psnrm_target.csv'

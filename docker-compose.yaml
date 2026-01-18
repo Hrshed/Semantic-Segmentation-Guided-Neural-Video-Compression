@@ -1,0 +1,29 @@
+services:
+  segmented-compression:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: multimodalneuralvideocompression:latest
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - OMP_NUM_THREADS=96
+      - MKL_NUM_THREADS=8
+    ipc: host
+    shm_size: 64g
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/workspace
+      - ./video_compression_config.yaml:/workspace/video_compression_config.yaml
+      - ${DATA_PATH}:/workspace/data
+      - ${PROJECT_PATH}/checkpoints:/workspace/checkpoints
+      - ${PROJECT_PATH}/logs:/workspace/logs
+    #command: uv run /workspace/trainer_seg_video_model.py num_gpus=1
+    command: uv run --with jupyter jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser --NotebookApp.token=''
+
+
+
+    ports:
+      - "8888:8888"
+    working_dir: /workspace
