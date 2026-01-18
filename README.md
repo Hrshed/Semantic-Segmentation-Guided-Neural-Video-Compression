@@ -1,6 +1,6 @@
-# Semantic Segmentation Guided Neural Video Compression – IDP Submission
+# Semantic Segmentation Guided Neural Video Compression 
 
-This repository contains the code for the IDP **“Semantic Segmentation Guided Neural Video Compression”**.
+This repository contains the code for the **“Semantic Segmentation Guided Neural Video Compression”**.
 
 The project extends a neural video compression baseline with semantic conditioning and a “Performance” architecture optimized for foreground regions. The final model improves **ROI PSNR by ~1–1.5 dB over the baseline at similar BPP**, with approximately **14% runtime overhead** (see accompanying report for details).
 
@@ -8,7 +8,7 @@ This README documents the environment, training and evaluation procedure so that
 
 ---
 
-## 1. Repository structure (submission)
+## 1. Repository structure
 
 The most relevant files for reproduction are:
 
